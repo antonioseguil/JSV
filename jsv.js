@@ -15,7 +15,7 @@ function getAllInput() {
 
 // ------------------ REVISIONES ----------------------- //
 
-//función validar
+//función revisar el estaado de cada input
 function validateStatus() {
     //traer toda la lista
     var list = getAllInput();
@@ -47,37 +47,71 @@ function validateStatus() {
             listaC.push(list[i]);
         }
     }
-    listAll.push(listaV,listaC);
+    listAll.push(listaV, listaC);
     return listAll;
 }
 
-// funcion para agregar clases
+// funcion para validar el estado y los clases correspondiente
 
 function validateAll() {
+    //llamada al funcion removeAlertMessage por si el div.alert esta activado y no se encuentre algun error
+    removeAlertMessage();
     // traer datos con su respectivo input
     var listAll = validateStatus();
+    // tamaño de la lista status
     var indexListStatus = listAll[0].length;
-
+    //estado que se devuelve, si uno es falso, devuelve falso
+    var status = true;
     for (let i = 0; i < indexListStatus; i++) {
         var status = listAll[0][i];
-        if(!status){
+        if (!status) {
             addStyleDanger(listAll[1][i]);
-        }else{
+            status = false;
+            addAlertMessage(listAll[1][i]);
+            break;
+        } else {
             addStyleCorrect(listAll[1][i]);
         }
     }
-    console.log(listAll);
-}
-//funcion para agregar style de borde rojo, etc
 
+    //console.log(listFalse);
+    return status;
+}
+//funcion para los no aceptado
 function addStyleDanger(input) {
     input.style.borderColor = "red";
 }
 
+//funciones para aceptado
 function addStyleCorrect(input) {
     input.style.borderColor = "green";
 }
 
+//funcion para agregar al alert
+
+function addAlertMessage(input) {
+    //variable que contiene el div con la clases alert BOOTSTRAP
+    var nAlert = document.getElementById("alertStatus");
+    //nombre del input enviado, convertido a mayuscula
+    var name = input.name.toUpperCase();
+    //valor del input enviado
+    var xvalue = input.value;
+
+    //validamos si no esta vacio, si no error el texto ingresado
+    if(xvalue == ""){
+        nAlert.innerText = "El campo " + name + " esta vacío, por favor ingrese los datos.";
+    }else{
+        nAlert.innerText = "Texto invalido en el campo '"+ name +"', por favor verifique el texto.";
+    }
+    //mostramos el div.alert
+    nAlert.style.opacity = "1";
+}
+
+// funcion para remover el alert
+function removeAlertMessage() {
+    var nAlert = document.getElementById("alertStatus");
+    nAlert.style.opacity = "0";
+}
 
 
 // ------------------ LISTA DE FUNCIONES ------------------------------- //
@@ -88,14 +122,12 @@ function validateName(name) {
     return regExp.test(name);
 }
 
-
 //funcion para apellidos
 
 function validateLastName(lastName) {
     var regExp = /^[A-Za-z]{3,50}$/
     return regExp.test(lastName);
 }
-
 
 //funcion para dni
 

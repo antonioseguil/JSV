@@ -18,12 +18,7 @@
         <div class="row">
 
             <div class="col-12">
-                <div class="alert alert-danger" role="alert">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque labore, molestias suscipit vel
-                    voluptates, rerum aut necessitatibus harum deleniti esse dicta dolores tenetur fuga quod, omnis at
-                    porro? Iure, animi.
-
-                </div>
+                <div id="alertStatus" style="opacity: 0;" class="alert alert-danger" role="alert"></div>
             </div>
 
             <div class="col-12">
@@ -31,22 +26,25 @@
                     <div class="row">
                         <div class="col-6">
                             <label for="txtName">Nombre</label>
-                            <input type="text" class="form-control" name="txtName" id="txtName" style="border-color: none;" required>
+                            <input type="text" class="form-control" name="Nombre" id="txtName" title="Campo nombre">
                         </div>
 
                         <div class="col-6">
                             <label for="txtName">Apellido Paterno:</label>
-                            <input type="text" class="form-control" name="txtLastNameF" id="txtLastNameF" required>
+                            <input type="text" class="form-control" name="Apellido Paterno" id="txtLastNameF"
+                                title="Campo apellido, evite poner un espacio al final">
                         </div>
 
                         <div class="col-6">
                             <label for="txtName">Apellido Materno:</label>
-                            <input type="text" class="form-control" name="txtLastNameM" id="txtLastNameM" required>
+                            <input type="text" class="form-control" name="Apellido Materno" id="txtLastNameM"
+                                title="Campo apellido, evite poner un espacio al final">
                         </div>
 
                         <div class="col-6">
                             <label for="txtName">Dni:</label>
-                            <input type="text" class="form-control" name="txtDni" id="txtDni" required>
+                            <input type="text" class="form-control" maxlength="8" name="Dni" id="txtDni"
+                                title="Campo DNI">
                         </div>
 
                         <div class="col-12 mt-3">
